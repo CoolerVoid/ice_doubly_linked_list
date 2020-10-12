@@ -81,7 +81,7 @@ ice_dl_node *Insert_dl_in_last(ice_dl_node *in,int position, void * data)
 	return New_node;
 }
 
-ice_dl_node *Delete_dl_by_position(int position, ice_dl_node * list)
+ice_dl_node *Delete_dl_by_position(int position, ice_dl_node * list,void (*lambda)(void *argvs) )
 {
 	ice_dl_node *head = Get_head_dl_position(list);
 	ice_dl_node *current = head;            
@@ -98,6 +98,7 @@ ice_dl_node *Delete_dl_by_position(int position, ice_dl_node * list)
 			tmp->prev=previous;
       			if(current == head)
 				head = current->next;
+			lambda(current->data);
       			free(current);
       			return tmp;
     		}                               
@@ -111,7 +112,7 @@ ice_dl_node *Delete_dl_by_position(int position, ice_dl_node * list)
 
 
 
-// List FIFO
+// List FIFO debug
 void fifo_dl_list_dbg(ice_dl_node* in) 
 {
 	struct ice_dl_node* temp = in;
@@ -123,9 +124,12 @@ void fifo_dl_list_dbg(ice_dl_node* in)
 		printf("%d ",temp->position);
 		temp = temp->next;
 	}
+
+	puts(" ");
 }
 
-// List LIFO
+
+// List LIFO debug
 void lifo_dl_list_dbg(ice_dl_node* in) 
 {
 	struct ice_dl_node* temp = in;
@@ -143,12 +147,46 @@ void lifo_dl_list_dbg(ice_dl_node* in)
 		printf("%d ",temp->position);
 		temp = temp->prev;
 	}
+	puts(" ");
+}
+
+
+
+
+// List FIFO debug
+void inter_fifo_dl_list(ice_dl_node* in,void (*lambda)(void *argvs)) 
+{
+	struct ice_dl_node* temp = in;
+
+	while(temp != NULL) 
+	{
+		lambda(temp->data);
+		temp = temp->next;
+	}
+}
+
+// List LIFO debug
+void inter_lifo_dl_list(ice_dl_node* in,void (*lambda)(void *argvs)) 
+{
+	struct ice_dl_node* temp = in;
+
+	if(temp == NULL) 
+		return; 
+
+	while(temp->next != NULL) 
+		temp = temp->next;
+
+	while(temp != NULL) 
+	{
+		lambda(temp->data);
+		temp = temp->prev;
+	}
 }
 
 
 
 // Clear heap memory
-void ice_clear_dl(ice_dl_node* in) 
+void ice_clear_dl(ice_dl_node* in,void (*lambda)(void *argvs)) 
 {
 	ice_dl_node *temp = Get_head_dl_position(in);
 	ice_dl_node *temp2 = NULL;
@@ -163,11 +201,15 @@ void ice_clear_dl(ice_dl_node* in)
 
 		if(temp != NULL)
 		{
+			lambda(temp->data);
 			free(temp);
 			temp = temp2;
 		}
 	}
 
 	if(temp2!=NULL)
+	{
+		lambda(temp2->data);
 		free(temp2);
+	}
 }

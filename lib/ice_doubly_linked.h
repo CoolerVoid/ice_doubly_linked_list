@@ -30,10 +30,9 @@
 
 #define XFREE_ICE_DL(x) ice_dl_xfree((void **)x);
 
-void ice_dl_xfree(void **ptr);
+void ice_dl_xfree(void **ptr); // nd improve that function
 void *ice_dl_xmalloc_fatal(size_t size); 
 void *ice_dl_xmalloc(size_t size); 
-
 
 struct ice_dl_node  {
 	int position;		// number reference
@@ -43,16 +42,16 @@ struct ice_dl_node  {
 };
 
 typedef struct ice_dl_node ice_dl_node;
-ice_dl_node* ice_dl_global; 
-
-
 
 void ice_doubly_linked_init(void);
 ice_dl_node * ice_create_dl_node(int position,void * data);
 ice_dl_node *Get_head_dl_position(ice_dl_node *in);
 ice_dl_node * Insert_dl_in_last(ice_dl_node* in,int position, void * data);
-ice_dl_node *Delete_dl_by_position(int position, ice_dl_node * list);
+ice_dl_node *Delete_dl_by_position(int position, ice_dl_node * list,void (*lambda)(void *argvs));
+
 void fifo_dl_list_dbg(ice_dl_node* in); 
 void lifo_dl_list_dbg(ice_dl_node* in);
-void ice_clear_dl(ice_dl_node* in);
+void inter_fifo_dl_list(ice_dl_node* in,void (*lambda)(void *argvs)); 
+void inter_lifo_dl_list(ice_dl_node* in,void (*lambda)(void *argvs));
+void ice_clear_dl(ice_dl_node* in,void (*lambda)(void *argvs));
 

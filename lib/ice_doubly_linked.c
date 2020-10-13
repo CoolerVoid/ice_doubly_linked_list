@@ -21,12 +21,9 @@ void ice_dl_xfree(void **ptr)
 
 void *ice_dl_xmalloc_fatal(size_t size) 
 {
-	if ( size == 0 ) 
-		return NULL;
+	ICE_DL_DEBUG("\n Memory error...\n dbg size: %lu\n",size);
 
-	ICE_DL_DEBUG("\n Memory FAILURE...\n");
-
-	exit(1);
+	exit(0);
 }
 
 void *ice_dl_xmalloc(size_t size) 

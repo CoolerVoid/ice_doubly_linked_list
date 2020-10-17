@@ -1,9 +1,9 @@
 #ifndef ___ICE_DOUBLY_LINKED_H__
 #define ___ICE_DOUBLY_LINKED_H__
+
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
-
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
@@ -38,10 +38,10 @@ void *ice_dl_xmalloc_fatal(size_t size);
 void *ice_dl_xmalloc(size_t size); 
 
 struct ice_dl_node  {
-	int position;		// number reference
 	void *data;		// custom user input data
 	struct ice_dl_node* next;
 	struct ice_dl_node* prev;
+	int position;		// number reference
 };
 
 typedef struct ice_dl_node ice_dl_node;

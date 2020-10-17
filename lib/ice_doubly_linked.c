@@ -1,10 +1,6 @@
 /* Doubly Linked List implementation */
-#include<stdio.h>
-#include<stdlib.h>
 
 #include "ice_doubly_linked.h"
-#include <stdbool.h>
-#include <assert.h>
 
 // alocation tasks, use this in future
 void ice_dl_xfree(void **ptr) 

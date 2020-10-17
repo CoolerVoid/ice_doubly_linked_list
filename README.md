@@ -28,4 +28,7 @@ $ ./bin/test_doubly_linked
 $ cat src/main.c
 ```
 
-
+Reference:
+--
+https://en.wikipedia.org/wiki/The\_C\_Programming\_Language
+https://en.wikipedia.org/wiki/Doubly\_linked\_list

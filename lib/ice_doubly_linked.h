@@ -1,11 +1,14 @@
+#ifndef ___ICE_DOUBLY_LINKED_H__
+#define ___ICE_DOUBLY_LINKED_H__
 #include <stdio.h>
 #include <stdbool.h>
 #include <assert.h>
 
 #include <string.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <time.h>
+
+
 
 // set DEBUG ON
 #define ICE_DL_BUGVIEW 1
@@ -55,3 +58,4 @@ void inter_fifo_dl_list(ice_dl_node* in,void (*lambda)(void *argvs));
 void inter_lifo_dl_list(ice_dl_node* in,void (*lambda)(void *argvs));
 void ice_clear_dl(ice_dl_node* in,void (*lambda)(void *argvs));
 
+#endif

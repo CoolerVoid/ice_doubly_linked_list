@@ -1,5 +1,5 @@
 # ice_doubly_linked_list
-ICE doubly linked list is a Open Source C library to help in two-way linked lists creation and work(insert,delete, traversal each element, destroy).
+ICE doubly linked list is a Open Source C library to help in two-way linked lists creation to carry custom data and common functions(insert,delete, traversal each element, destroy).
 
 You can use this small library to solve memory problems...
 
